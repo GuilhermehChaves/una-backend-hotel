@@ -4,12 +4,9 @@ class HotelController {
   async store(request, response) {
     let hotel = await Hotel.findOne(request.body);
 
-    if (!hotel) {
-      hotel = await Hotel.create(request.body);
-      return response.status(200).json(hotel);
-    }
-
-    return response.status(400).json({ message: 'Hotel already exists' });
+    return !hotel ?
+      response.status(200).json(await Hotel.create(request.body)) :
+      response.status(400).json({ message: 'Hotel already exists' });
   }
 
   async index(_, response) {
