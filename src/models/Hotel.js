@@ -8,6 +8,7 @@ const HotelSchema = new Schema({
   apartment_type: String,
   quantity_room: Number,
   daily: Number,
+  imageName: String
 });
 
 export default model('hotel', HotelSchema);
